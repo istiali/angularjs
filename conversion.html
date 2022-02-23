@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<body>
+
+    <div ng-app="myApp" ng-controller="app">
+        <h1>Convertor</h1>
+        <hr>
+        </hr>
+        <h2>Celcius To Farenheit: </h2>
+        <input type="cel" ng-model="cel" ng-change="ctof()">
+        <h4>Celcius: <span ng-bind="cel"></span></h4>
+        <h4>Farenheit: <span ng-bind="far"></span></h4>
+        <hr>
+        </hr>
+        <h2>Farenheit To Celcius: </h2>
+        <input type="far" ng-model="far" ng-change="ftoc()">
+        <h4>Farenheit: <span ng-bind="far"></span></h4>
+        <h4>Celcius: <span ng-bind="cel"></span></h4>
+        <hr>
+        </hr>
+        <h2>Centimeters To Millimeters: </h2>
+        <input type="cm" ng-model="cm" ng-change="ctomm()">
+        <h4>Centimeters: <span ng-bind="cm"></span></h4>
+        <h4>Millimeters: <span ng-bind="mm"></span></h4>
+        <hr>
+        </hr>
+        <h2>Meters To Centimeters: </h2>
+        <input type="mt" ng-model="mt" ng-change="mtoc()">
+        <h4>Meters: <span ng-bind="mt"></span></h4>
+        <h4>centimeters: <span ng-bind="cm"></span></h4>
+        <hr>
+        </hr>
+        <h2>Kilometers to Meters: </h2>
+        <input type="km" ng-model="km" ng-change="ktom()">
+        <h4>Kilometer: <span ng-bind="km"></span></h4>
+        <h4>Meters: <span ng-bind="ms"></span></h4>
+        <hr>
+        </hr>
+    </div>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller('app', ['$scope', function ($app) {
+            $app.km = 1;
+            $app.ms = 1000;
+            $app.cm = 100;
+            $app.mm = 10;
+            $app.mt = 1;
+            $app.cel=0;
+            $app.far = 32;
+            $app.ktom = function () {
+                $app.ms = ($app.km * 1000);
+            }
+            $app.mtoc = function () {
+                $app.cm = ($app.mt * 100);
+            }
+            $app.ctof = function () {
+                $app.far = ($app.cel * 9/5) + 32
+            }
+            $app.ftoc = function () {
+                $app.cel = ($app.far - 32) * 5/9
+            }
+            $app.ctomm = function () {
+                $app.mm = ($app.cm * 10)
+            }
+        }]);
+    </script>
+</body>
+
+</html>
