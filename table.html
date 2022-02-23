@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="" ng-init="num1=2; num=[1,2,3,4,5,6,7,8,9,10]">
+    <h1>Table</h1>
+    <p>Enter a Number: <input type="number" ng-model="num1"></p>
+    <h4>Table of {{ num1 }} is:</h4>
+    <p ng-repeat="x in num">
+        {{ num1*x }}
+    </p>   
+</div>
+
+</body>
+</html>
