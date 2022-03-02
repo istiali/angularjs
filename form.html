@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<style>
+
+  *{
+    background-color: rgb(255, 255, 255);
+  }
+</style>
+<div id="abc">
+<h2>Student Registration</h2>
+
+<form  ng-app="myApp"  ng-controller="validateCtrl"
+name="myForm" novalidate>
+
+<p >Username:<br>
+  <input type="text" name="user" ng-model="user" required>
+  <span ng-show="myForm.user.$dirty && myForm.user.$invalid && myForm.user.$untouched">
+  <span style="color:red;" ng-show="myForm.user.$error.required" >Username is required.</span>
+  </span>
+</p>
+
+<p>First Name:<br>
+  <input type="text" name="user" ng-model="fname" required>
+  <span ng-show="myForm.fname.$dirty && myForm.fname.$invalid && myForm.fname.$untouched">
+  <span style="color:red;" ng-show="myForm.fname.$error.required">First Name is required.</span>
+  </span>
+</p>
+
+<p>Last Name:<br>
+  <input type="text" name="user" ng-model="lname" required>
+  <span ng-show="myForm.lname.$dirty && myForm.lname.$invalid">
+  <span style="color:red;" ng-show="myForm.lname.$error.required">Last Name is required.</span>
+  </span>
+</p>
+
+<p>Email:<br>
+  <input type="email" name="email" ng-model="email" required>
+  <span ng-show="myForm.email.$dirty && myForm.email.$invalid && myForm.email.$untouched">
+  <span style="color:red;" ng-show="myForm.email.$error.required">Email is required.</span>
+  <span style="color:red;" ng-show="myForm.email.$error.email">Invalid email address.</span>
+  </span>
+</p>
+
+<!-- <input type="button" value="Submit" ng-click="checkvalidation();" /> -->
+
+<div>Phone No. :</div>
+    <div>
+      <input type="text" name="phone" ng-pattern="phoneNumbr" ng-model="phone" required>
+      <span ng-show="myForm.phone.$dirty && myForm.phone.$invalid && myForm.phone.$untouched">
+      <span class="error" style="color:red;" ng-show="myForm.phone.$error.required">Required!</span>
+      <br><span class="error" style="color:red;" ng-show="myForm.phone.$error.pattern">Please enter valid mobile number</span>
+</div>
+<br>
+
+<div>Seat No. :</div>
+    <div>
+      <input type="text" name="phone" ng-pattern="Numbr" ng-model="seatno" required>
+      <span ng-show="myForm.seatno.$dirty && myForm.seatno.$invalid && myForm.seatno.$untouched">
+      <span class="error" style="color:red;" ng-show="myForm.phone.$error.required">Required!</span>
+      <br><span class="error" style="color:red;" ng-show="myForm.phone.$error.pattern">Please enter valid seat number</span>
+</div>
+
+<p>Batch:<br>
+  <input type ="radio" name="batch" value="1" ng-model="selectVal" />T11
+  <input type ="radio" name="batch" value="2" ng-model="selectVal" />T12<br />
+  <input type ="radio" name="batch" value="3" ng-model="selectVal" />T13
+  <input type ="radio" name="batch" value="4" ng-model="selectVal" />T14<br />
+  <span style="color:Red" ng-show="validationmsg">{{msg}}</span>
+</p>
+
+<p>Branch:<br>
+  <input type ="radio" name="branch" value="1" ng-model="selectVal1" />IT<br />
+  <input type ="radio" name="branch" value="2" ng-model="selectVal1" />Comps<br />
+  <input type ="radio" name="branch" value="3" ng-model="selectVal1" />Chem<br />
+  <input type ="radio" name="branch" value="4" ng-model="selectVal1" />AI-DS<br />
+  <input type ="radio" name="branch" value="5" ng-model="selectVal1" />Biomed<br />
+  <span style="color:Red" ng-show="validationmsg">{{msg}}</span>
+</p>
+
+<p>Year:<br>
+<input type ="radio" name="year" value="1" ng-model="selectVal2" />FE<br />
+<input type ="radio" name="year" value="2" ng-model="selectVal2" />SE<br />
+<input type ="radio" name="year" value="3" ng-model="selectVal2" />TE<br />
+<input type ="radio" name="year" value="4" ng-model="selectVal2" />BE<br />
+<span style="color:Red" ng-show="validationmsg">{{msg}}</span>
+</p>
+
+<br>
+<input type="checkbox" ng-model="chkselct">Agree to terms and conditions<br />
+<span style="color:red;" ng-show="validationmsg">Please select Checkbox</span><br />
+
+<p>
+    <input type="submit"
+    ng-disabled="myForm.user.$dirty && myForm.user.$invalid ||
+    myForm.email.$dirty && myForm.email.$invalid" ng-click="checkvalidation();">
+
+    <button ng-click="reset()">Reset</button>
+  </p>
+</div>
+</form>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('validateCtrl', function($scope) {
+  $scope.user = '';
+  $scope.email = '';
+  $scope.phone = '';
+  $scope.seatno = '';
+  $scope.validationmsg = false;
+  $scope.validmsg= false;
+  $scope.phoneNumbr = "^((\\+91-?)|0)?[0-9]{10}$";
+
+  $scope.reset = function() {
+    $scope.user = angular.copy($scope.user);
+    $scope.email = angular.copy($scope.email);
+    $scope.phone = angular.copy($scope.phone);
+    $scope.seatno = angular.copy($scope.seatno);
+
+  };
+  $scope.reset();
+
+    $scope.checkvalidation = function () {
+
+      var chkselct = $scope.chkselct;
+      if (chkselct == false || chkselct == undefined)
+      {
+          $scope.validationmsg = true;
+      }
+      else
+      {
+          $scope.validationmsg = false;
+      }
+
+      if ($scope.selectVal == undefined)
+      {
+        $scope.msg = 'Please choose atleast one option';
+        $scope.validationmsg= true;
+
+      }
+      else
+      {
+        $scope.validationmsg= false;
+      }
+    }
+});
+</script>
+
+</body>
+</html>
