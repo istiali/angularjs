@@ -1,0 +1,11 @@
+show db
+use local
+db.createCollection("mycol")
+usemycol
+db.mycol.insertOne({Name: "Istiyak" ,RollNo: 112 ,Age: 20,Subject:[{Name: "WX" ,Marks:35}])
+db.mycol.find()
+db.mycol.insertMany([{Name: "Parth" ,RollNo: 114 ,Age: 20,Subject:[{Name: "WX" ,Marks:35}]},{Name: "Farhan" ,RollNo: 111 ,Age: 20,Subject:[{Name: "WX" ,Marks:35}]},{Name: "Ameya" ,RollNo: 113 ,Age: 20,Subject:[{Name: "WX" ,Marks:35}]}])
+db.mycol.update({'Name':'Parth'},{$set:{'Name':'Parth Shroff'}})
+db.mycol.remove({'Name':'Parth Shroff'})
+db.mycol.find(Age: >19)
+db.mycol.find({Age: {$gt: 19}})
