@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <title>Built-in Helper Functions in AngularJS</title>
+  </head>
+
+  <body>
+    <div ng-app="App" ng-controller="AppController">
+      <h1>Helper Functions in AngularJS</h1>
+      <div class="calc">
+        <h3>Number 1: <input type="number" ng-model="a" /></h3>
+        <h3>Number 2: <input type="number" ng-model="b" /></h3>
+        <h3>Result : {{result1()}}</h3>
+
+        <h3>String : <input type="text" ng-model="s" /></h3>
+        <h3>Result : {{result2()}}</h3>
+      </div>
+    </div>
+
+    <script>
+      var app = angular.module("App", []);
+      app.controller("AppController", function ($scope) {
+        $scope.result1 = function () {
+          return (
+            angular.isNumber($scope.a) && angular.equals($scope.a, $scope.b)
+            // angular.isNumber($scope.a) && angular.isNumber($scope.b)
+          );
+        };
+        $scope.result2 = function () {
+          return angular.isString($scope.s);
+        };                         
+      });
+    </script>
+  </body>
+</html>

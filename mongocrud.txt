@@ -9,3 +9,119 @@ db.mycol.update({'Name':'Parth'},{$set:{'Name':'Parth Shroff'}})
 db.mycol.remove({'Name':'Parth Shroff'})
 db.mycol.find(Age: >19)
 db.mycol.find({Age: {$gt: 19}})
+
+-----------------------------------------------------------------------------------------------------------------------------------
+ show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+mycol   0.000GB
+
+ use mycol
+switched to db mycol
+
+ db.createUser({ user:"freeuser", pwd:"1234", roles:[]});
+Successfully added user: { "user" : "freeuser", "roles" : [ ] }
+
+
+db.createUser({ user:"promptuser", pwd:passwordPrompt(), roles:[]});
+Enter password:
+Successfully added user: { "user" : "promptuser", "roles" : [ ] }
+
+ db.getUsers()
+[
+        {
+                "_id" : "mycol.freeuser",
+                "userId" : UUID("4077b178-126e-47f9-8b01-a46b3b993330"),
+                "user" : "freeuser",
+                "db" : "mycol",
+                "roles" : [ ],
+                "mechanisms" : [
+                        "SCRAM-SHA-1",
+                        "SCRAM-SHA-256"
+                ]
+        },
+        {
+                "_id" : "mycol.promptuser",
+                "userId" : UUID("10eb1d78-5893-4259-bfe7-6fad37d6f7cc"),
+                "user" : "promptuser",
+                "db" : "mycol",
+                "roles" : [ ],
+                "mechanisms" : [
+                        "SCRAM-SHA-1",
+                        "SCRAM-SHA-256"
+                ]
+        }
+]
+
+ db.getUsers({ showCredentials: true })
+[
+        {
+                "_id" : "mycol.freeuser",
+                "userId" : UUID("4077b178-126e-47f9-8b01-a46b3b993330"),
+                "user" : "freeuser",
+                "db" : "mycol",
+                "credentials" : {
+                        "SCRAM-SHA-1" : {
+                                "iterationCount" : 10000,
+                                "salt" : "9Cc3WDeoTjYcnIy2LVpjmw==",
+                                "storedKey" : "oRZ1u+zNjoDnGbUgwa77gQUeTEM=",
+                                "serverKey" : "G5p4u4VRpZrdg+3vSjwcMSjNEGE="
+                        },
+                        "SCRAM-SHA-256" : {
+                                "iterationCount" : 15000,
+                                "salt" : "btThbNaSaKqc2wibFAoqgexCbYIRJqr2rFcAaA==",
+                                "storedKey" : "P5dt/lLmyapQ7r1lvuUhl3eVuVhDypeR+dN2uXWwJzQ=",
+                                "serverKey" : "mKmFRHhNDYnaegM9VUGBEIXghUuuZBH5BZ815SK71mU="
+                        }
+                },
+                "roles" : [ ],
+                "mechanisms" : [
+                        "SCRAM-SHA-1",
+                        "SCRAM-SHA-256"
+                ]
+        },
+        {
+                "_id" : "mycol.promptuser",
+                "userId" : UUID("10eb1d78-5893-4259-bfe7-6fad37d6f7cc"),
+                "user" : "promptuser",
+                "db" : "mycol",
+                "credentials" : {
+                        "SCRAM-SHA-1" : {
+                                "iterationCount" : 10000,
+                                "salt" : "PouRM81ax/TJWs/PBNxclA==",
+                                "storedKey" : "1fKDhiq9blJLzwatJSlR8mabI2Y=",
+                                "serverKey" : "NKEBQjoigIM2GuADfMvJfnPxc7U="
+                        },
+                        "SCRAM-SHA-256" : {
+                                "iterationCount" : 15000,
+                                "salt" : "1oqN2ngoaA/WtCJFr27E47L+D36nYcvgYIPNPg==",
+                                "storedKey" : "do9uKEEwcR0fZ0ExnyjLvprE5XEB8FPOzcG1awDDTfQ=",
+                                "serverKey" : "K7cFhdFvovPbuzgFc20rxsAbnbQ581/8/6jK0/4Vpok="
+                        }
+                },
+                "roles" : [ ],
+                "mechanisms" : [
+                        "SCRAM-SHA-1",
+                        "SCRAM-SHA-256"
+                ]
+        }
+]
+
+db.getUser("freeuser")
+{
+        "_id" : "mycol.freeuser",
+        "userId" : UUID("4077b178-126e-47f9-8b01-a46b3b993330"),
+        "user" : "freeuser",
+        "db" : "mycol",
+        "roles" : [ ],
+        "mechanisms" : [
+                "SCRAM-SHA-1",
+                "SCRAM-SHA-256"
+        ]
+}
+
+> db.dropUser("promptuser")
+true
+> db.getUser("promptuser")
+null

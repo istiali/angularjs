@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<title>Calculator-T11-15</title>
+<body>
+    <style>
+        *{
+            background-color: rgb(237, 244, 245);
+            color: rgb(8, 0, 0);
+        }
+    </style>
+
+<div ng-app="">
+    <h1>Calculator using AngularJS</h1>
+    <p>Enter First Number: <input type="number" ng-model="num1"></p>
+    <p>Enter Second Number: <input type="number" ng-model="num2"></p>
+    <p>Sum: {{num1+num2 }}</p>
+    <p>Difference: {{ num1-num2 }}</p>
+    <p>Product: {{ num1*num2 }}</p>
+    <p>Division: {{ num1/num2 }}</p>    
+</div>
+</body>
+</html>
